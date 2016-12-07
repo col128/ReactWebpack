@@ -7,16 +7,23 @@
  */
 
 import React from 'react';
+import Remarkable from 'remarkable'
 
+var data = [
+  {id: 1, author: "Pete Hunt", text: "This is one comment"},
+  {id: 2, author: "Jordan Walke", text: "This is *another* comment"}
+];
 
 class  Comment extends React.Component{
+
   render(){
+    var md = new  Remarkable();
     return (
       <div className="comment">
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
-        {this.props.children}
+        {md.render(this.props.children.toString())}
       </div>
     );
   }
